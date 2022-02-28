@@ -1,0 +1,11 @@
+D:\Labs\modeling\Kuibarov_Lab1\bin\Debug\Kuibarov_Lab1.exe.config
+D:\Labs\modeling\Kuibarov_Lab1\bin\Debug\Kuibarov_Lab1.exe
+D:\Labs\modeling\Kuibarov_Lab1\bin\Debug\Kuibarov_Lab1.pdb
+D:\Labs\modeling\Kuibarov_Lab1\obj\Debug\Kuibarov_Lab1.csproj.AssemblyReference.cache
+D:\Labs\modeling\Kuibarov_Lab1\obj\Debug\Kuibarov_Lab1.csproj.SuggestedBindingRedirects.cache
+D:\Labs\modeling\Kuibarov_Lab1\obj\Debug\Kuibarov_Lab1.MainForm.resources
+D:\Labs\modeling\Kuibarov_Lab1\obj\Debug\Kuibarov_Lab1.Properties.Resources.resources
+D:\Labs\modeling\Kuibarov_Lab1\obj\Debug\Kuibarov_Lab1.csproj.GenerateResource.cache
+D:\Labs\modeling\Kuibarov_Lab1\obj\Debug\Kuibarov_Lab1.csproj.CoreCompileInputs.cache
+D:\Labs\modeling\Kuibarov_Lab1\obj\Debug\Kuibarov_Lab1.exe
+D:\Labs\modeling\Kuibarov_Lab1\obj\Debug\Kuibarov_Lab1.pdb

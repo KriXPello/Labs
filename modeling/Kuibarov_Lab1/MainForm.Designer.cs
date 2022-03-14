@@ -39,7 +39,7 @@
             // 
             // resultBox
             // 
-            this.resultBox.Location = new System.Drawing.Point(12, 132);
+            this.resultBox.Location = new System.Drawing.Point(12, 95);
             this.resultBox.Name = "resultBox";
             this.resultBox.Size = new System.Drawing.Size(156, 81);
             this.resultBox.TabIndex = 0;
@@ -47,7 +47,8 @@
             // 
             // schema1Button
             // 
-            this.schema1Button.Location = new System.Drawing.Point(12, 85);
+            this.schema1Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.schema1Button.Location = new System.Drawing.Point(12, 66);
             this.schema1Button.Name = "schema1Button";
             this.schema1Button.Size = new System.Drawing.Size(75, 23);
             this.schema1Button.TabIndex = 3;
@@ -57,7 +58,8 @@
             // 
             // schema2Button
             // 
-            this.schema2Button.Location = new System.Drawing.Point(93, 85);
+            this.schema2Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.schema2Button.Location = new System.Drawing.Point(93, 66);
             this.schema2Button.Name = "schema2Button";
             this.schema2Button.Size = new System.Drawing.Size(75, 23);
             this.schema2Button.TabIndex = 3;
@@ -103,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(188, 247);
+            this.ClientSize = new System.Drawing.Size(188, 184);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.qInput);

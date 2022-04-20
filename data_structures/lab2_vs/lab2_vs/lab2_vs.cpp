@@ -3,8 +3,15 @@
 
 using namespace std;
 
+/*
+	Для работы функции multiply4 нужно включить
+	поддержку OpenMP в настройках проекта Visual Studio.
+
+	Проект -> св-ва проекта -> С/C++ -> язык
+*/
+
 //int n = 4;
-int n = 2048;
+int n = 1024;
 
 unsigned int prevRandom = 5;
 unsigned pseudoRandom() {
@@ -34,7 +41,7 @@ void outputMatrix(double* M) {
 	cout << endl << endl;
 }
 
-// no optimisations
+// Без оптимизаций
 void multiply1(double* A, double* B, double* C) {
 	int t;
 
@@ -65,7 +72,7 @@ double* makeTransponatedMatrix(double* M) {
 	return T;
 }
 
-// just transponate
+// Только транспонировать
 void multiply2(double* A, double* B, double* C) {
 	double* T = makeTransponatedMatrix(B);
 
@@ -106,7 +113,7 @@ double multiplyVectors(double* vectorA, double* vectorB) {
 }
 
 
-// transponate and use loop unroll
+// Транспонировать, использовать развёртку циклов
 void multiply3(double* A, double* B, double* C) {
 	double* T = makeTransponatedMatrix(B);
 
@@ -122,6 +129,26 @@ void multiply3(double* A, double* B, double* C) {
 		}
 	}
 }
+
+// Транспонировать, использовать развёртку циклов и распараллеливание
+void multiply4(double* A, double* B, double* C) {
+	double* T = makeTransponatedMatrix(B);
+
+	double* rowA;
+	double* rowC;
+
+	// в num_threads поставить число логических или физических ядер процессора
+	#pragma omp parallel for num_threads(16)
+	for (int i = 0; i < n; i++) {
+		rowA = A + i * n;
+		rowC = C + i * n;
+
+		for (int j = 0; j < n; j++) {
+			rowC[j] = multiplyVectors(rowA, T + j * n);
+		}
+	}
+}
+
 
 int main() {
 	double* A = new double[n * n];
@@ -147,8 +174,7 @@ int main() {
 	typedef chrono::high_resolution_clock Clock;
 	auto t1 = Clock::now();
 
-	//multiply1(A, B, C);
-	multiply3(A, B, C);
+	multiply4(A, B, C);
 
 	auto t2 = Clock::now();
 	cout << chrono::duration_cast<chrono::milliseconds>(t2 - t1).count() / 1000.0 << endl;

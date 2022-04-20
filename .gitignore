@@ -1,1 +1,8 @@
 *.exe
+
+*.o
+
+Debug/
+Release/
+
+.vs/

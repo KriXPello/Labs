@@ -11,7 +11,7 @@ using namespace std;
 */
 
 //int n = 4;
-int n = 1024;
+int n = 30720;
 
 unsigned int prevRandom = 5;
 unsigned pseudoRandom() {
@@ -138,7 +138,7 @@ void multiply4(double* A, double* B, double* C) {
 	double* rowC;
 
 	// в num_threads поставить число логических или физических ядер процессора
-	#pragma omp parallel for num_threads(16)
+	#pragma omp parallel for num_threads(12)
 	for (int i = 0; i < n; i++) {
 		rowA = A + i * n;
 		rowC = C + i * n;

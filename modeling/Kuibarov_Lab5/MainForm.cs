@@ -192,7 +192,6 @@ namespace Kuibarov_Lab5
         {
             // решение первой задачи
 
-            // система для нахождения распределения токов
             double[,] matrix = new double[,]
             {
             //  { i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8] }
@@ -280,5 +279,4 @@ namespace Kuibarov_Lab5
             richTextBox1.Text = str.ToString();
         }
     }
-
 }

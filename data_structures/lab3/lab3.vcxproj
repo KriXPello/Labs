@@ -140,6 +140,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="lab3.cpp" />
+    <ClCompile Include="CustomStack.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CustomStack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

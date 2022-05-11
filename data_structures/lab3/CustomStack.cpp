@@ -10,12 +10,22 @@ using namespace std;
 
 CustomStack<list>::CustomStack(int n) {
 	top = nullptr;
+	nextIndex = 0;
+	arr = nullptr;
+	top = nullptr;
 }
 CustomStack<int*>::CustomStack(int n) {
+	top = nullptr;
 	nextIndex = 0;
 	arr = new int[n];
+	top = nullptr;
 }
-CustomStack<stack<int>>::CustomStack(int n) {}
+CustomStack<stack<int>>::CustomStack(int n) {
+	top = nullptr;
+	nextIndex = 0;
+	arr = nullptr;
+	top = nullptr;
+}
 
 bool CustomStack<list>::is_empty() {
 	return top == nullptr;

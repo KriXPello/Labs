@@ -83,7 +83,7 @@ namespace Kuibarov_Lab5
             double det = 1; // определитель
             double e; // значение ведущего элемента
 
-            int n = a.GetLength(1);
+            int n = a.GetLength(0);
 
             double[] temp = new double[n];
 
@@ -223,7 +223,7 @@ namespace Kuibarov_Lab5
 
                 for (int k = 0; k < matrix.GetLength(1); k++)
                 {
-                    str.AppendLine($"i{k + 1} = {i[k].ToString("R4")}");
+                    str.AppendLine($"i{k + 1} = {i[k].ToString("F4")}");
                 }
             } else
             {
@@ -245,7 +245,7 @@ namespace Kuibarov_Lab5
                 { 0, 0, 0, 0, -r(5), r(6), 0, 0 },
                 { 0, r(2), 0, 0, 0, r(6), -r(7), 0 },
                 { 0, 0, r(3), 0, 0, 0, r(7), -r(8) },
-                { 0, 0, 0, r(4), -r(5), 0, 0, r(8) }
+                { -1, 0, 0, r(4), -r(5), 0, 0, r(8) }
             };
 
             double[] b2 = new double[] { 
@@ -269,7 +269,7 @@ namespace Kuibarov_Lab5
             if (res2)
             {
                 str.AppendLine("Решение");
-                str.AppendLine($"e4 = {i[0].ToString("R4")}");
+                str.AppendLine($"e4 = {string.Format("{0:F2}", x[0])}");
             }
             else
             {

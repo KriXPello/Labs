@@ -126,6 +126,7 @@ int main()
         }
     }
 
+    cout << endl << "Kuibarov Vyacheslav Nikolaevich 090304-RPIa-o21" << endl;
     cout << "Prepared" << endl;
 
     string searchStr;

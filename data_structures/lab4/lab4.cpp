@@ -13,6 +13,8 @@ using namespace std;
 using namespace regex_constants;
 
 /*
+* "Google Problem"
+* 
 * Для работы нужен С++ 17
 * 
 * В релиз версии жрал 350 мегабайт ОЗУ и проводил первичную обработку за 4-8 секунд

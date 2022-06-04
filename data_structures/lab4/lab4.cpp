@@ -17,8 +17,6 @@ using namespace regex_constants;
 * 
 * Для работы нужен С++ 17
 * 
-* В релиз версии жрал 350 мегабайт ОЗУ и проводил первичную обработку за 4-8 секунд
-* 
 * InnerDict словарь:
 * key - слово (целиком, в нижнем регистре)
 * value - количество этого слова в тексте
@@ -45,7 +43,17 @@ using namespace regex_constants;
 using InnerDict = Dict<int>;
 using DoubleDict = Dict<InnerDict>;
 
-const string fileName = "text.txt";
+/*
+* text.txt - война и мир на русском, нашёл где-то на отшибах интернета (не знаю, полная ли)
+* 3-6 секунд обработки и ест 350 мб ОЗУ
+* 
+* text_en.txt - война и мир на английском, нашёл в исходниках NVIDIA CUDA
+* https://github.com/NVIDIA/cuda-samples/blob/master/Samples/0_Introduction/c%2B%2B11_cuda/warandpeace.txt
+* 
+* 2-4 секунды обработки и ест 220 мб ОЗУ
+* очень странно, т.к. файл больше чем русская версия
+*/
+const string fileName = "text_en.txt";
 
 const regex notLettersRegex("[^a-zA-Zа-яА-Я]", ECMAScript);
 

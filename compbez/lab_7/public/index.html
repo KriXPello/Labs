@@ -71,8 +71,6 @@
             if (message && encryptionKey) {
                 const encodedMessage = CryptoJS.AES.encrypt(message, encryptionKey).toString();
 
-                console.log('sending', encodedMessage);
-
                 socket.emit('new message', encodedMessage);
                 messageInput.value = '';
             }
@@ -96,9 +94,7 @@
             allMessages.forEach((encodedMessage) => {
                 const decodedMessage = decodeText(encodedMessage);
 
-                if (decodedMessage) {
-                    appendMessage(decodedMessage);
-                }
+                appendMessage(decodedMessage || encodedMessage);
             });
 
             scrollToBottom();
@@ -109,12 +105,8 @@
 
             const decodedMessage = decodeText(msg);
 
-            console.log('received:', msg, 'decoded to:', decodedMessage);
-
-            if (decodedMessage) {
-                appendMessage(decodedMessage);
-                scrollToBottom();
-            }
+            appendMessage(decodedMessage || msg);
+            scrollToBottom();
         });
     </script>
 </body>

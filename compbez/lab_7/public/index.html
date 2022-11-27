@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+        <div id="message-input-container">
+            <input id="message-input" class="input" autocomplete="off" />
+            <button type="submit" class="button">Send message</button>
+        </div>
+
+        <div id="encryption-key-container">
+            <span>Ключ шифрования</span>
+            <input id="encryption-key-input" class="input" type="text" placeholder="Ключ шифрования" />
+            <button id="generate-encryption-key-button" class="button">Сгенерировать</button>
+        </div>
+    </form>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/crypto-js.js"></script>
+    <script>
+        const socket = io();
+
+        const allMessages = [];
+
+        /** @type {HTMLInputElement} */
+        const encryptionKeyInput = document.querySelector('#encryption-key-input');
+        const generateEncryptionKeyButton = document.querySelector('#generate-encryption-key-button');
+
+        const messagesList = document.getElementById('messages');
+        const messageInput = document.getElementById('message-input');
+        const form = document.getElementById('form');
+
+        /** Возвращает пустую строку если нет ключа шифрования или не удалось расшифровать текст */
+        const decodeText = (text) => {
+            const encryptionKey = encryptionKeyInput.value;
+
+            if (!encryptionKey) {
+                return "";
+            }
+
+            const decodedMessage = CryptoJS.AES
+                .decrypt(text, encryptionKey)
+                .toString(CryptoJS.enc.Utf8);
+
+            return decodedMessage;
+        };
+
+        const appendMessage = (msg) => {
+            const item = document.createElement('li');
+            item.innerText = msg;
+            messagesList.appendChild(item);
+        };
+
+        const scrollToBottom = () => {
+            window.scrollTo(0, document.body.scrollHeight);
+        };
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const encryptionKey = encryptionKeyInput.value;
+            const message = messageInput.value;
+
+            if (message && encryptionKey) {
+                const encodedMessage = CryptoJS.AES.encrypt(message, encryptionKey).toString();
+
+                console.log('sending', encodedMessage);
+
+                socket.emit('new message', encodedMessage);
+                messageInput.value = '';
+            }
+        });
+
+        generateEncryptionKeyButton.addEventListener('click', () => {
+            const randomKey = CryptoJS.MD5(String(Math.random())).toString();
+
+            encryptionKeyInput.value = randomKey;
+            encryptionKeyInput.select();
+        });
+
+        encryptionKeyInput.addEventListener('click', (e) => {
+            e.preventDefault();
+            encryptionKeyInput.select();
+        });
+
+        encryptionKeyInput.addEventListener('change', () => {
+            messagesList.innerHTML = "";
+
+            allMessages.forEach((encodedMessage) => {
+                const decodedMessage = decodeText(encodedMessage);
+
+                if (decodedMessage) {
+                    appendMessage(decodedMessage);
+                }
+            });
+
+            scrollToBottom();
+        });
+
+        socket.on('new message', function (msg) {
+            allMessages.push(msg);
+
+            const decodedMessage = decodeText(msg);
+
+            console.log('received:', msg, 'decoded to:', decodedMessage);
+
+            if (decodedMessage) {
+                appendMessage(decodedMessage);
+                scrollToBottom();
+            }
+        });
+    </script>
+</body>
+
+</html>

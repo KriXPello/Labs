@@ -7,3 +7,5 @@ Release/
 
 .vs/
 *.user
+
+node_modules/
